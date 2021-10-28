@@ -34,4 +34,7 @@
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
     <!--开启MVC的注解驱动-->
     <mvc:annotation-driven/>
+    <!--配置文件上传解析器,将上传的文件封装成为MultipartFile-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+
 </beans>
