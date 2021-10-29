@@ -15,5 +15,10 @@ public class TestController {
     public String testInterceptor(){
         return "success";
     }
+   @RequestMapping("/testExceptionHandler")
+    public String testExceptionHandler(){
+       System.out.println(1/0);
+        return "success";
 
+   }
 }
