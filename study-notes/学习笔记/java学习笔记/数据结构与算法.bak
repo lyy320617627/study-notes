@@ -1,0 +1,1760 @@
+	public void addByOrder(HeroNode heroNode){
+	HeroNode temp=head;
+	boolean flag=false;
+	while(true){
+	 if(temp.next==null){
+	break;//已经到链表的最后；
+	}
+	if (temp.next.no>heroNode.no){
+	break;//找到要插入的位置
+	}
+	else if (temp.next.no==heroNode.no){
+	flag=true;
+	break;
+	}
+
+
+	}
+	temp=temp.next;
+	//通过flag的值判断是否要插入数据
+	if（flag==true）{
+	System.out.printf("要插入的数据%d已经存在"，heroNode.no)
+	}else if（）{
+	heroNode.next=temp.next;
+	temp.next=heroNode;
+	}
+	}
+	public void update(HeroNode newheroNode){
+		HeroNode temp=head.next;
+	boolean flag=false;
+	if (head.next==null){
+	System.out.printf("链表为空，没有数据");
+	break;
+	}
+	while (true){
+                    if(temp==null){
+                      //已经到链表的最后
+                break;
+                  }
+            if (temp.no==newHeroNode.no){
+flag=true;
+break;
+}
+temp=temp.next;
+	}
+           if (flag){
+           temp.name=newHeroNode.name           
+           temp.nickname=newHeroNode.nickname;
+ }else{
+System.out.printf("没有编号为%d的英雄信息"，newHeroNode.no);
+
+}
+	}
+public void del(int no){
+HeroNode temp=head;
+boolean flag=false;
+while(true){
+if (temp==null){
+//表示已经到链表的最后
+break;
+}
+if (temp.next.no==no){
+//表示已经找到要删除的节点，待删除的节点是temp的下一个节点
+flag=true；
+break；
+}
+temp=temp.next;
+if(flag){
+temp.next=temp.next.next;
+}else{
+System.out.printf("%d节点不存在\n",no);
+}
+}
+}
+//统计节点中的有效个数
+//head表示头节点，
+public static int getLength(HeroNode head){
+if (head.next==null){
+return 0;
+}
+HeroNode cur=head.next;
+int length=0;
+while(cur=null){
+length++;
+cur=cur.next;
+}
+return length
+}
+//返回倒数第k个节点链表的信息
+public static HeroNode findLastIndex(HeroNode head,int index){
+if (head.next==null){
+return null;
+}
+int size=getlength(head);
+if (index<=0||size>0){
+return null;
+}
+HeroNode cur=head.next;
+for (int i=0;i<size-index;i++){
+cur=cur.next;
+}
+return cur;
+}
+//实现单链表的翻转
+public void reverseList(HeroNode head){
+if（head.next==null||head.next.next==null）{
+return;
+}
+HeroNode cur=head.next;//设置一个暂时的节点，用于遍历；
+HeroNode next=null;//设置一个临时的链表
+HeroNode reverseHead=new HeroNode（0，"",""）;
+while(cur!=null){
+next=cur.next;
+cur.next=reverseHead.next;
+reverHead.next=cur;
+cur=next;
+}
+head.next=reverseHead.next;
+}
+//逆序打印列表节点
+public static void reversePrint(HeroNode head){
+Stack<HeroNode> stack=new Stack<HeroNode>（）;
+HeroNode cur=head.next;
+while(cur!=null){
+stack.push(cur);
+cur=cur.next;
+}
+//出栈
+while(stack.size()>0){
+
+}
+}
+//创建一个环形链表
+class CircleLinkedList{
+private Boy first=null;
+public void addBoy(int nums){
+if (nums<1){
+System.out.println("nums数据错误，不能创建环形链表");
+return;
+}
+Boy curBoy=null;
+for (int i=1;i<=nums;i++){
+Boy boy=new Boy(i);
+if (i==1){
+first=boy;
+first.setNext(first);
+curBoy=first;
+}else{
+    curBoy.getNext(boy);
+  boy.setNext(first);
+curBoy=boy;
+}
+}
+}
+//遍历环形链表
+public void showBoy(){
+Boy curBoy=first;
+if (fisrt==null){
+System.out.println("环形链表为空，没有小孩")；
+reutrn;
+}else{
+System.out.printf("小孩的编号为%d\n",curBoy.getNo());
+if (curBoy.getNext()==first){
+break;
+}
+curBoy=curBoy.getNext();
+}
+--->约瑟夫问题
+public void cuontBoy(int startNo,int countNo,int nums){
+  Boy helper=first;
+  while(true){
+if (helper.getNext()==first){
+break;
+}
+helper=helper.getNext();
+}
+for (int i=0;i<startNo-1;i++){
+helper=helper.getNext();
+first=first.getNext();
+}
+while(true){
+if （helper==first）{
+break;
+}
+for (int j=0;j<countNum-1:;j++){
+first=first.getNext();
+helper=helper.getNext();
+}
+System.out.printf("小孩%d\n已经出圈"，first.getNo);
+first=first.getNext();
+helper.setNext(fitst);
+}
+System.out.printf("最后的小孩%d\n",first.getNo);
+}
+----------------------------------------------------------------------------------------
+用数组模拟栈
+class ArrayStack{
+private int top=-1;
+private int maxSize;
+private int[] stack;
+public Stack(int maxSize){
+this.maxSize=maxSize;
+stack=new int[maxSIze];
+}
+//判断栈是否满
+public void isFull(){
+return  top==maxSize-1;
+}
+//判断栈是否为空
+public void isEmpty(){
+return top==-1;
+}
+//入栈
+public void push(int value){
+if (isFull()){
+System.out.println("栈满");
+reutrn;
+}
+top++
+stack[top]==value;
+}
+// 出栈
+public int pop(){
+if (isEmpty){
+throw new RuntimeException("栈空，没有数据");
+}
+int value=stack[top];
+top--;
+return top;
+}
+//遍历栈
+public void list(){
+if(isEmpty){
+System.out.println("栈空，没有数据")；
+}
+for (int i=top;i>=0;i--){
+System.out.printf("stack[%d]=%d",i,stack[i]);
+}
+}
+}
+--------------------------------------------------------
+中缀表达式生成计算器
+String espression="3+2*6-2";
+ArrayStack2 numStack=new ArrayStack(10);
+ArrayStack2 operStack=new ArrayStack(10);
+int res=0;
+int num1=0;
+int num2=0;
+char ch=' ';
+int oper=0;
+String keepNum="";
+while(true){
+//如果是操作符
+ch =expression.subString(index,index+1).charAt(0);
+if (operStack.isOper(ch)){//如果是操作符
+if(!operStack.isEmpty()){//如果操作栈不为空
+if(operStak.proprity(ch)<=operStack.proprity(operStack.peek()//此方法返回栈顶元素)){
+num1=numberStack.pop();
+num2=numberStack.pop();
+oper=operStack.pop();
+res=numberStack.cal(num1,num2,oper);
+numberStack.push(res);
+operStack.push(ch);
+} else{
+operStack.push(ch);
+}
+}
+else{
+//处理多位数的压入操作
+//numberStack.push(ch-48);
+keepNum+=ch;
+if (index==operStack.length()-1){
+numberStack.push(Integer.parseInt(keepNum));
+}else{
+if(operStack.isOper(expression.substring(index+1,index+2).charAt(0))){
+numberStack.push(Integer.parseInt(keepNum));
+keepNum="";
+}
+}
+}
+index++;
+if(index>=expression.length()){
+break;
+}
+}
+while(true){
+if(operStack.isEmpty()){
+break;
+}
+num1=numberStack.pop();
+num2=numberStack.pop();
+oper=operStack.pop;
+res=numberStack.cal(num1,num2,oper);
+numberStack.push(res)
+}
+System.out.printf("表达式%s=%d",expression,numberStack.pop());
+}
+--------------------------------------------
+完成逆波兰运算表达式的运算
+public static List<String>getSuffixExpression(String suffixExpression){
+   
+List<String> list=new ArrayList<String>(); 
+ String[]  split=suffixExpression.split(" ");
+for (String ele:split){
+list.add(ele);
+}
+return list;
+}
+public static int calculate(List<String> ls){
+Stack<String> stack=new Stack<String>();
+for (String item:ls){
+if (item.catchs("//d+")){
+stack.push(item);
+} else{
+  int num2=Integer.parseInt(stack.pop());
+ int num1=Integer.parseInt(stack.pop());
+int res=0;
+if (items.equals("+")){
+res=num1+num2;
+}else if (item.equals("-")){
+res=num1-num2;
+} else if (item.equals("*")){
+res=num1*num2;
+} else if ("/"){
+res=num1/num2;
+} else{
+throw new RuntimeExpression("输入的操作符有误")；
+}
+stack.push(res+"");
+}
+}
+System.out.println("逆波兰表达式的值是"+Integer.parseInt(stack.pop())));
+} 
+----------------------------------------
+中缀表达式转换成中缀数组的方法的方法
+public static List<String> toInfixExpressionList(String s){
+ List<String> ls=new  ArrayList<String>(); 
+String str;//用于拼接
+char c=;
+int i=0;
+do{
+//如果是一个非数字，则直接压入到栈中
+if ((c=charAt(i))<48||(c=charAt(i))>57){
+ls.add(""+c.charAt(i));
+i++;
+} else{//是一个数字，则需要考虑多位数的情况
+str="";将str置空
+while（(c=charAt(i))>=48&&(c=charAt(i))<=57）{
+str+=c;
+i++;
+}
+ls.add(str);
+}
+}while(i<=s.length);
+return ls;
+}
+----------------------------------------
+回溯之迷宫问题
+public static boolean setWay(int[][] map,int i, int j){
+if (map[[6][5]==2){
+return true;
+}  else{
+   if (map[i][j]==0){
+   map[i][j]==2;//假设该点已经走过
+      else if (setWay(map,i+1,j)){
+      return true;
+   } else if (setWay(map,i,j+1)){
+   return true;
+   }else if (setWay(map,i-1,j)){
+   reutrn true;
+   }else if (setWay(map,i,j-1)){
+     return true;
+   }
+}  else{
+    map[i][j]=3;
+    return false;
+}
+}
+}
+---------------------------------------------------
+递归：回溯问题之八皇后问题
+//摆放第n个皇后
+private void check(int n){
+if (n==max){  //表明第n个皇后已经摆放好了
+print();
+return;
+}
+for (int i=0;i<max;i++){
+array[n]=i;
+if (judge(n)){
+check(n+1);
+}
+}
+}
+//  判断八皇后的位置是否冲突
+private boolean judge(int n){
+for (int i=0;i<n;i++){
+if (array[n]==array[i]||Math.abs(n-i)==Math.abs(array[n]-array[i])){
+return false;
+}
+return true;
+}
+}
+
+
+//输出八皇后的摆放
+public void print(){
+ for (int i=0;i<array.length;i++){
+ System.out.print(array[i]+"");
+ }
+ System.out.println();
+}
+-----------------------------------
+冒泡排序算法的实现及优化
+public class BullbeSort(){
+   public static void main(String[] args){
+   int[] arr=new int[]{-1,9,3,10,-3};
+   int temp=0;
+   boolean flag=false;
+   for (int i=0;i<arr.length-1;i++){
+      for (int j=0;j<arr.length-1-i;j++){
+      if (arr[j]>arr[j+1]){
+      flag=true;
+      temp=arr[i];
+      arr[i]=arr[i+1];
+      arr[i+1]=temp;
+      }
+      }
+      System.out.println(Arrays.toString(arr));
+   if (!flag){  //表明没有交换数据，则可以直接输出数据
+   break;
+   } else{
+     flag=false;   //重置 flag为false ,则可以方便下次的判断
+   }
+   }
+   }
+
+}
+----------------------------------------
+选择排序的代码实现
+public class SelectSort{
+  public static void main(String[] args){
+   int[] arr=new int[]{1,9,3,2,-1};
+   selectSort(arr);
+
+  }
+  public static void selectSort(int[] arr){
+     int min=arr[0];
+     minIndex=0;
+     for (int i=0;i<arr.length-1;i++){
+       minIndex=i;
+       min=arr[i];
+       for (int j=i+1;j<arr.length;j++){
+       if (min>arr[j]){
+        min=arr[j];
+	 minIndex=j;
+       }
+       }
+       if (minIndex!=i){
+         arr[minIndex]=arr[i];
+	 arr[i]=min;
+       }
+       System.out.println("第"+(i+1)+"次排序后的结果"+Arrays.toString(arr));
+     }
+  }
+}
+-------------------------------------
+插入排序的代码实现
+public class InsertSort{
+  public static void main(Strin[] args){
+  int[] arr=new int[]{101,1,3,4,-1};
+      insertSort(arr);
+  }
+  public static void inertSort(int[] arr){
+       for (int i=1;i<arr.length;i++){
+       int insertVal=arr[i];
+       int insertIndex=i-1;
+       while(insertIndex>=0&&insertVal<arr[insertIndex]){
+         arr[insertIndex+1]=arr[insertIndex];
+	 insertIndex--;
+       }
+       if (insertIndex+1==i){
+
+       arr[insertIndex+1]=insertVal;
+       System.out.println("第"+i+"轮的排序结果是"+Arrays.toString(arr));
+       }
+      }
+  }
+}
+-----------------------------------------
+希尔排序的插入法式实现
+public class ShellSort{
+ public static void main(String[] args){
+  int[] arr=new int[]{3,6,9,8,4,5,7,1,2,0};
+   shellSort(arr);
+ }
+ public static void shellSort(int[] arr){
+     int temp=0;
+     int count=0;
+     for (int gap=arr.length/2;gap>0;gap/=2){
+         for (int i=gap;i<arr.length;i++){
+	 for(int j=i-gap;j>=0;j-=gap){
+	  if (arr[j]>arr[j+gap]){
+	   temp=arr[j];
+	   arr[j]=arr[j+gap];
+	   arr[j+gap]=temp;
+	  }
+	 }
+     }
+     System.out.println("希尔排序第"+(++count)+"次排序后的结果是"+Arrays.toString(arr));
+     
+     }
+ }
+}
+---------------------------------
+希尔排序的移位算法实现
+public static void shellSort(int[] arr){
+ for (int gap=arr.length/2;gap>0;gap/=2){
+   for (int i=gap;i<arr.lengtj;i++){
+    int j=i;
+    int temp=arr[j];
+      if (arr[j]<arr[j-gap]){
+      while(j-gap>=0&&temp<arr[j-gap]){
+      //将arr[j-gap]的值移位到arr[j]的位置
+         arr[j]=arr[j-gap];
+	 j-=gap;
+      }
+      //当退出循环时，表明已经找到了位置
+      temp=arr[j];
+      }
+   }
+ }
+}
+---------------------------------
+归并排序的代码实现
+public class MergeSort{
+  public static void main(String[] args){
+   int arr[]={8,4,5,7,1,3,6,2};
+   int[] temp=new int[arr.length];
+   mergeSort(arr,0,arr.lemgth-1,temp);
+   System.out.println(Arrays.toString(arr));
+
+  }
+  public static void mergeSort(int[] arr,int left,int right,int[] temp){
+    if (left<right){
+     int mid=(left+right)/2;
+     mergeSort(arr,left,mid,temp);
+     mergeSort(arr,mid+1,right,temp);
+     merge(arr,left,mid,right,temp);
+    }
+  }
+
+  //合并的方法
+  public  static void merge(int[] arr,int left,int mid,int right,int[] temp){
+   int i=left;
+   int j=mid+1;
+   int t=0;
+   while (i<=mid&&j<=right){
+   if (arr[i]<=arr[j]){
+      temp[t]=arr[i];
+      t+=1;
+      i+=1;
+   }else {
+     temp[t]=arr[j];
+     t+=1;
+     j+=1;
+   }
+   }
+   while(i<=mid){
+    temp[t]=arr[i];
+    t+=1；
+    i+=1;
+   }
+   while(j<=right){
+    temp[t]=arr[j];
+    t+=1；
+    j+=1;
+   }
+   int t=0;
+   int tempLeft=left;
+   while(tempLeft<=right){
+      arr[tempLeft]=temp[t];
+      t+=1；
+      tempLeft+=1;
+   }
+  }
+}
+----------------------------------------------
+基数排序算法的实现
+public class RadixSort{
+ public static void main(String[] args){
+   int[] arr={1,2,3,4,5,6,78};
+
+ }
+ digitOfElement
+ public static void radixSort(int[] arr){
+     int max=arr[0];
+     for (int i=0;i<arr.length;i++){
+       if (arr[i]>max){
+       max=arr[i];
+       }
+
+     }
+     int maxLength=(max+"").length;
+   
+   int[][] bucket=new int[10][arr.length];
+   int[] bucketElementCounts =new int[10];
+    for (int i=0,n=1;i<maxLenth;i++,n*=10){
+   for (int j=0;j<arr.length;j++){
+    int digitOfElement=arr[j]/n%10;
+    bucket[digitOfElement][bucketElementCounts[digitOfElement]]=arr[j];
+    bucketElementCounts[digitOfElement]++;
+   }
+   int index=0;
+   for (int k=0;k<bucketElementCounts.length;k++){
+    if (bucketElementCounts[k]!=0){
+      for (int l=0;l<bucketElementCounts[k];l++){
+          arr[index++]=bucketELementCounts[k][l];
+      }
+    }
+    bucketElement[k]=0;
+   }
+   System.out.println(Arrays.toString(arr));
+ }
+ }
+}
+-------------------------------------------------------
+插值排序的代码实现
+public class InsertValueSearch{
+public static void main(String[] args){
+  int[] arr=new int[100];
+  for (int i=0;i<100;i++){
+   arr[i]=i+1;
+  }
+  int resIndex=insertValueSearch(arr,0,arr.length-1,1);
+   System.out.println("resIndex="+resIndex);
+}
+public static int insertValueSearch(int[] arr,int left,int right,int findVal){
+  int mid=left+(right-left)*(findVal-arr[left])/(arr[right]-arr[left]);
+  int midVal=arr[mid];
+  if (left>right || findVal<arr[left]||findVal>arr[right]){
+   return -1;
+  }
+  if (findVal<arr[mid]){
+   return insertValueSearch(arr,left,mid-1,findVal);
+  } else if (findVal>midValue){
+    return insertValueSearch(arr,mid+1,right,findVal);
+  } else {
+   return mid;
+  }
+}
+}
+---------------------------------------------------
+哈希表的代码实现
+public class HashTabDemo{
+ public static void main(String[] args){
+ 
+ }
+}
+//编写哈希数组
+class HashTab{
+     private EmpLinkedList[]  empLinkedListArray;  
+     public  int size;
+     public HashTab(int size){
+     this.size=size;
+       empLinkedListArray=new EmpLinkedList[size];
+     }
+     public void add(Emp emp){
+         int empLinkedListNO=HashFun(emp.id);
+         empLinkedListArray[empLinkedListNO].addz(emp);
+     }
+     //查找雇员
+     public void findEmpById(int id){
+       int empLinkedListNO=HashFun(id);
+       Emp emp=empLInkedListArray[empLinkedListNO].findEmpById(id);
+       if (emp!=null){
+         System.out.println("找到了，该雇员的信息为："+emp);
+       } else{
+       System.out.println("抱歉，没有找到该雇员");
+       }
+     }
+     public void HashFun(int id){
+       return id%size;
+     }
+     public void list(){
+     for (int i=0;i<size;i++){
+       empLInkedListArray[i].list();
+     }
+     }
+}
+class Emp{
+  public int id;
+  public String name;
+  public Emp next;
+  public Emp(int id,String name){
+   super();
+   this.id=id;
+   this.name=name;
+  }
+}
+//表示哈希数组
+class  EmpLinkedList{
+   private Emp head;
+   //添加雇员
+   public void add(Emp emp){
+     if (head==null){
+      head=emp;
+      return;
+      }
+      Emp curemp=head;
+      while(true){
+           if (curemp.next==null){
+	    break;
+	   }
+	   curemp=curemp.next;
+      }
+      curemp.next=emp;
+     }
+     //如果头链表不为空
+     public void list(){
+       if (head==null){
+        System.out.println("链表为空，没有数据");
+	return;
+       }
+       System.ou.println("当前链表的信息为:");
+         Emp curEmp=head;
+         while(true){
+	  System.out.printf("=>id=%d  name=%s\t",emp.id,emp.name);
+	
+	  if (curEmp.next==null){
+	     break;
+	  }
+	  curEmp=curEmp.next;
+	 }
+	 System.out.println();
+     }
+   }
+  public Emp findEmpById(int id){
+     if (head==null){
+      System.out.println("链表为空，没有数据");
+      return null;
+     }
+     Emp curEmp=head;
+     if (curEmp.id==id){
+    
+       break;
+     }
+     if (curEmp.next==null){
+      curEmp=null;
+     }
+     curEmp=curEmp.next;
+  }
+  return  curEmp;
+}
+-------------------------------
+遍历线索化二叉树的方法
+public void threadedList(){
+//设置当前节点为root节点
+  HeroNode node=root;
+  //遍历当前节点的前驱节点
+  while(node.getLeftType==0){
+   node=node.getLeft();
+  }
+  打印当前节点
+  System.out.println(node);
+  //遍历当前节点的后继节点
+  while(node.getrightType()==0){
+  node=node.getRight();
+  System.out.println(node);
+  }
+  //节点后移
+  node=node.getRight();
+  }
+  ---------------------------------
+  堆排序的代码实现
+  public class HeapSort{
+  public static void main(String[] args){
+  int temp=arr[0];
+   int[] arr={4,6,8,5,9};
+   for (int i=arr.length/2-1;i>=0;i--){
+      heapjust(arr,i,arr.length);
+   }
+   for (int j=arr.lenngth-1;j>0;j--){
+     temp=arr[j];
+     arr[j]=arr[0];
+     arr[0]=temp;
+     addjustheap(arr,0,j);
+   }
+   System.ouy.println(Arrays.toString(arr));
+  }
+  public static void heapjust(int[] arr,int i,int length){
+     //将当前节点置为临时节点
+     int temp=arr[i]; 
+     for(int k=i*2+1;k<length;k=k*2+1){
+      if (k+1<length&&arr[k]<arr[k+1]){//如果左子树节点的值小于临时节点
+         k++;//将当前节点指向右节点
+      }
+      if(arr[k]>temp){
+       arr[i]=arr[k];
+       i=k;
+      }else{
+      break;
+      }
+     }
+      arr[i]=temp;
+  }
+  }
+  -----------------------------------------
+  创建hafumanTree
+  public class HafumanTree{
+   public static void main(String[] args){
+    int arr[]={13,7,8,3,29,6,1};
+    createhafumanTree(arr);
+
+   }
+   public static Node createhafumanTree(int[] arr){
+   //1.把数组中的每个数值取出来，放到集合中
+   //对数组中的每个元素进行排序
+   //3.输出数组
+     LIst<Node> nodes=new ArrayList<Node>();
+     for(int value:arr){
+      nodes.add(new Node(value));
+     }
+     while(nodes.size()>1){
+     Collections.sort(nodes);
+     System.out.println("nodes="+nodes);
+     //取出两个权值最小的节点
+       Node leftNode=nodes.get(0);
+       Node rightNode=nodes.get(1);
+       Node parent=new Node(leftNode.value+rightNode.value);
+       nodes.remove(leftNode);
+       nodes.remove(rightNode);
+       nodes.add(parent);
+     }
+     reutrn nodes.get(0);
+   }
+  }
+  class Node implements CompareTo<Node>{
+   int value;
+   Node left;
+   Node right;
+// 前序遍历
+   public void preOrder(){
+   System.out.println(this);
+   if (this.left!=null){
+    this.left.preOrder();
+   }
+   if (this.right!=null){
+   this.right.preOrder();
+  }
+   public Node(int value){
+   this.value=value;
+   }
+   @Override
+   public String toString(){
+     return "Nodes{"+"value="+value+"}";
+    }
+    @Override
+    public int CompareTo(Node o){
+    return this.value-o.value;
+    }
+  }
+  -------------------------------------------
+ 创建huffmanTree
+ public class HuffmanTree{
+ public static void main(String[] args){
+  int arr[]={13,7,8,3,29,6,1};
+Node2 root= createHuffmanTree(arr);
+preOrder(root);
+ }
+
+ //创建前序遍历的方法
+ public void preOrder(Node2 root){
+  if (root!=null){
+    root.preOrder();
+  }else {
+   System.out.println("空树，无法遍历");
+  }
+ }
+ public static Node2 create huffmanTree(int[] arr){
+    List<Node > nodes =new ArrayList<>();
+    for (int value: arr){
+    nodes.add(new Node(value));
+    }
+    while(nodes.size()>1){
+    Collections.sort(nodes);
+    System.out.println("nodes="+nodes);
+    Node2 leftNode=left;
+    Node2 rightNode=right;
+    Node2 parent=new Node2(leftNode.value+rightNode.value);
+    parent.left=leftNode;
+    parent.right=rightNode;
+    nodes.remove(leftNode);
+    nodes.remove(rightNode);
+    nodes.add(parent);
+    }
+    return Nodes.get(0);
+    }
+ }
+ //创建node节点
+ class Node implement CompareTo<node>{
+  int value;
+  Node left;
+  Node right;
+
+ //创建前序遍历的方法
+ public void preOrder(){
+  System.out.println(this);
+  if (this.left!=null){
+  this.left.preOrder();
+  }
+  if (this.right!=null){
+  this.right.preOrder();
+ }
+ 
+ }
+  public Node(int value){
+  this.value=value;
+  }
+  @Override
+  public String toString(){
+   return "Node [ value="+value+"]";
+  }
+  @Override
+  public Node compareTo(Node o){
+  return this.value-o.value;
+  }
+ }
+ -------------------------------------------------------------
+ 创建haffmancode
+ public class HuffmanCode{
+  public static void main(String[] args){
+  String content="i like like like java do you like a java";
+  byte[] contentBytes=content.getBytes();
+  System.out.println(contentBytes.lenght);
+  List<Node> nodes=getNodes(contnetBytes);
+  System.out.println("赫夫曼树");
+  Node huffmanTreeRoot=createHuffmanTree(nodes);
+  huffmanTreeRoot.preOrder();
+  }
+  //编写一个文件，完成对文件的解压
+  public static void unzipFile(String zipFile,String dstFile){
+  //编写一个文件的输入流
+  InputStream is=null;
+  编写一个文件的输出流
+  OutputStream os=null;
+  //定义一个对象的输出流
+  ObjectInputStream ois=null；
+  try{
+  /创建文件的输入流
+  is=new FileInputStream(zipFile);
+  //创建一个和输入文件相关联的对象输入流
+  ois =new ObjectInputStream(is);
+  //读取byte数组huffmanBytes
+  byte[] huffmanBytes=(byte[]) ois.readObject();
+  //读取赫夫曼编码表
+  Map<Byte,String> huffmanCodes=(Map<Byte,String>) ois.readObject();
+  byte[] bytes=decode(huffmanCodes,huffmanBytes);
+  os=new FileOutputStream(dstFile);
+  os=write(bytes);
+  } catch(Exceeption e){
+  System.out.println(e.getMessage);
+  }finally{
+  try{
+    os.close();
+   ois.close();
+   is.close();
+  }catch{
+   System.out.println(e.getMessage);
+  }
+ 
+  }
+  }
+
+
+//编写一个方法，进行对文件的压缩
+public static void zipFile(String srcFile,String dstFile){
+  //创建一个文件的输入流
+  FileInputStream is=null;
+   OutputStream os=null;
+   ObjectOutputStream oos=null;
+  try{
+  //创建一个文件的输入流
+  is=new FileInputStream(srcFile);
+  //定义一个和源文件大小一样的字节数组
+  byte[] b=new byte[is.availble()];
+  //读取文件
+  is.read(b);
+  //直接对源文件进行压缩
+  byte[] huffmanBytes=huffmanZip(b);
+  //定义一个文件的输出流
+ os=new OutputStream(dstFile);
+ /创建一个和输出流相关联的文件输出流
+ oos=new ObjectOutputStream(os);
+ //把赫夫曼编码后的字节数组写入压缩文件
+ oos.writeObject(huffmanBytes);
+ oos.writeObject(huffmanCodes);
+} catch(Exception e){
+   System.out.println(e.getMessage());
+}finall{
+try{
+ is.close();
+ os.close();
+ oos.close();
+} catch(IOException e){
+System.out.println(e.getMessage());
+}
+}
+}
+
+
+
+//创建一个方法，完成对压缩数据的解码
+private static byte[] decode(Map<Byte,String> huffmanCodes,byte[] huffmanBytes){
+ //创建一个StringBuilder，完成对数据的拼接
+ StringBuilder stringbuilder1=new StringBuilder();
+ for (int i=0;i<stringbuilder.length;i++){
+  byte b=huffmanBytes[i];
+  boolean flag= (i==huffmanBytes.length-1);
+  stringbuilder1.append(byteTobitString(!flag,b))
+ }
+Map<String,Byte> map=new hashMap<>();
+for (Map.Entry<Byte,String> entry:huffmanCodes.entrySet()){
+map.put(entry.getValue(),entry.getKey());
+}
+List<Byte> list=new ArrayList<>();
+for (int i=0;i<stringbuilder.length();i++){
+ int count=1;
+ boolean flag=true;
+ Byte b=null;
+ while (flag){
+  String key=StringBuilder.substring(i,i+couont);
+  b=map.get(key);
+  if (b==bull){
+   count++;
+  }else {
+   flag=false;
+  }
+ }
+ list.add(b);
+ i+=count;//直接让i移动到count的位置
+}
+//当for循环结束后，我们list中就存放了所有的字符
+//把list中的数据放入到byte[]并返回
+byte[] b=new byte[list.size()];
+for (int i=0;i<b.length;i++){
+b[i]=list.get(i);
+}
+return b;
+}
+private static String byteToBitString(boolean flag,byte b){
+ int temp=b;
+ if (flag){
+ temp |=256;
+ }
+ String str=Integer.toBinaryString(temp);
+ if (flag){
+  return str.substring(str.length()-8);
+ }else {
+  return str;
+ }
+}
+ //创建一个方法，将byte[]数组，通过赫夫曼编码表压缩，转换成赫夫曼编码压缩后的byte[]数组
+ private static byte[] zip(byte[] bytes,Map<Byte,String> huffmanCodes){
+     //通过创建一个stringBuilder类，用于拼接压缩后的byte数组
+     StringBuilder stringBuilder=new StringBuilder();
+     for(byte b:bytes){
+      //通过将byte数组遍历并加入到stringBuilder中
+       stringBuilder.append(huffmanCodes.get(b)){
+      }
+      int len;//定义一个用于存放压缩后的huffmanCode表
+      int index=0;用于统计huffmanCode数组的长度
+      if(stringBuilder.length()%8==0){
+       int len=stringBuilder.length()/8;
+      }else{
+       int len= stringBuilder.length()/8+1;
+      }
+       byte[] huffmanCodeBytes=new byte[len];
+      for (int i=0;i<stringBuilder.length();i+=8){
+      String strByte;
+      if (i+8>stringBuilder.length()){
+      strByte=stringBuilder.substirng(i);
+      }else {
+      strByte=stringBuilder.subString(i,i+8);
+      }
+       huffmanCodeBytes[index]=(byte)Integer.parseInt(strByte,2);
+
+      }
+
+     }
+
+ }
+  //创建前序遍历
+  private static void preOrder(Node root){
+    if (root!=null){
+     preOrder();
+    } else{
+     System.out.println("赫夫曼树为空");
+    }
+  }
+  创建一个方法，并返回nodes
+  private static List<Node> getBytes(Byte[] bytes){
+   List<Node> nodes=new ArrayList<>();
+   Map<Byte,Integer> counts =new HashMap<>();
+   for (Byte b: counts){
+    Integer count=counts.get(b);
+    if (count==null){
+     counts.put(b,1);
+    }else {
+    counts.put(b,count+1);
+    }
+   }
+   for (Map.Entry<Byte,Integer> entry:Map.entrySet){
+   nodes.add(new Node(entry.getKey(),entry.getValue()))
+   }
+   return nodes;
+  }
+  //通过一个List创建对应的哈夫曼树
+  private static Node createHuffmanTree(List<Node> nodes){
+   while(nodes.size()>1){
+   Collections.sort();
+   Node leftNode=nodes.get(0);
+   Node rightNode=nodes.get(1);
+   Node parent=New Node(null,leftNode.weight+rightNode.weight);
+   parent.left=leftNode;
+   parent.right=rightNode;
+   nodes.remove(leftNode);
+   nodes.remove(rightNode);
+   nodes.add(parent);
+
+   }
+   return nodes.get(0);
+  }
+ }
+ //创建huffman树，带权值和数据
+ class Node implements Comparable<Node>{
+ Byte data; //表示数据对应的数值
+ int weight; 表示字符出现的个数
+ Node left;
+ Node right;
+ public Node(Byte data,int weight){
+  this.data=data;
+  this.weight=weight;
+ }
+ @Override 
+ public String toString(){
+  return "Node [data="+data+" weight="weight"]"
+ }
+ @Override 
+ public int compareTo(Node o){
+  return this.weight-o.weight;
+ }
+ public void preOrder(){
+  System.out.println(this);
+  if (this.left!=null){
+  this.left.preOrder();
+  }
+  if(this.right!=null){
+   this.right.preOrder();
+  }
+ }
+ }
+ ----------------------------------------------------
+排序二叉树的创键
+public class BinarySortTree{
+public static void main(String[] args){
+
+}
+}
+class binarySort{
+private Node root;
+//查找要删除的节点
+public Node searchNode(int value){
+ if (root==null){
+ reutn null;
+ }else {
+ return root.searchNode(value);
+ }
+}
+//查找要删除的父节点
+public Node searchParent(int value){
+if (root==null){
+return null;
+}else {
+return root.searchParent(value);
+}
+}
+
+//删除以node为根节点的右子树的最小节点
+//返回以node为根节点的右子树的最小节点的根节点的最小值
+public int delRightTreeMin(Node node){
+ Node target=node;
+  while(target.left!=null){
+  target=tarlget.left;
+  }
+  delNode(target.value);
+  return target.value;
+}
+//删除对应的节点
+public void delNode(int value){
+        if (root==null){
+            return;
+        }else {
+            //1.需求先去找到要删除的节点 targetNode
+            Node targetNode = search(value);
+            if (targetNode==null){
+                return;
+            }
+            //如果我们发现当前这颗二叉排序树只有一个节点
+            if (root.left==null && root.right==null){
+                root=null;
+                return;
+            }
+            //去找到targetNode的父节点
+            Node parent=searchParent(value);
+            //如果要删除的节点是叶子节点
+            if (targetNode.left==null && targetNode.right==null){
+                 //判断targetNode是父节点的左子节点还是右子节点
+                if (parent.left!=null && parent.left.value==value){//是左子节点
+                    parent.left=null;
+                }else if (parent.right!=null && parent.right.value==value){ //是右子节点
+                    parent.right=null;
+                }
+            }else if (targetNode.left!=null && targetNode.right!=null){
+	       int minvalue=targetNode.delRightTreeMin(targetNode.right);
+	       targetNode.value=minvalue;
+	    } else {//删除只有一颗子树的二叉排序树
+	    if (targetNode.left!=null){//说明要删除的节点有左子节点
+	    if(parent.left.value==vlaue){//说明目要删除的节点是父节点的左子节点
+	     parent.left=targetNode.left;
+	    }else {
+	    parnet.right=targetNode.left;
+	    }
+	    }else {//说明删除的节点是由右子节点
+	     if (parent.left.value==value){
+	     parent.left=targetNode.right;
+	     }else {
+	     parent.right=targetNode.right;
+	     }
+	    }
+	          
+	    }
+        }
+    }
+public void add(Node node){
+if (root ==null){
+ root=node;
+}else {
+ root.add(node);
+}
+}
+public void infixOrder(){
+ if (root!=null){
+  root.infixOrder();
+ }else {
+ System.out.println("二叉排序树为空，无法遍历");
+ }
+}
+}
+class Node{
+int value;
+Node left;
+Node right;
+public Node(int value){
+this.value=value;
+}
+//查找要删除的节点
+public Node srarchNode(int value){
+if (value==this.value){
+ return this;
+}else if (value <this.value){
+if (this.left==null){
+return null;
+}
+return this.left.searchNode(value);
+}else {
+if (this.right==null){
+return null;
+}
+return this.right.searchNode(value);
+}
+}
+//查找要删除的节点的父节点
+public Node searchParent(int value){
+if ((this.left!=null && this.left.value==value) || (this.right!=null && this.right.value==value)){
+reutrn this;
+} else {
+if (value < this.value && this.left!=null){
+ return this.left.searchParent(value);
+} else if (value>=this.value && this.right!=null){
+reutrn this.right.searchParent(value);
+}else {
+ return null;
+}
+}
+}
+@Override 
+public String toString (){
+ return "Node [value"+value+"]";
+}
+//添加节点的方法
+public void add(Node node){
+//判断节点是否为空
+if(node==null){
+return;
+}
+if (node.value<this.value){
+ if (this.left==null){
+  this.left=node;
+ } else {
+  this.left.add(node);
+ } 
+}else {
+ if (this.right==null){
+ this.right=node;
+ } else {
+  this.right.add(node);
+ }
+}
+
+}
+//中序遍历的方法
+public void infixOrder(){
+ if (this.left!=null){
+ this.left.infixOrder();
+ } 
+ System.out.println(this);
+ if (this.right!=null){
+ this.right.infixOrder();
+ }
+}
+}
+-----------------------------
+创建平衡二叉树
+package com.ly.avl;
+
+public class AVLTreeDemo {
+    public static void main(String[] args) {
+     int[] arr={4,3,6,5,7,8};
+     //创建一个AVLTree
+        AVLTree avlTree = new AVLTree();
+        //添加节点
+        for (int i=0;i< arr.length;i++){
+           avlTree.add(new Node(arr[i]));
+        }
+        //\中序遍历
+        System.out.println("中序遍历");
+        avlTree.infixOrder();
+        System.out.println("在没有平衡处理前");
+        System.out.println("树的高度"+avlTree.getRoot().height());//4
+        System.out.println("树的左子树的高度="+avlTree.getRoot().leftHeight());
+        System.out.println("树的右子树的高度="+avlTree.getRoot().rightHeight());
+    }
+}
+//创建AVLTree
+class AVLTree {
+    private Node root;
+
+    public Node getRoot() {
+        return root;
+    }
+
+    //查找要删除的节点
+    public Node search(int value) {
+        if (root == null) {
+            return null;
+        } else {
+            return root.search(value);
+        }
+    }
+
+    //查找父节点
+    public Node searchParent(int value) {
+        if (root == null) {
+            return null;
+        } else {
+            return root.searchParent(value);
+        }
+    }
+    //编写方法
+    //1.返回的以node为根节点的二叉排序树的最小根节点的值
+    //2.删除node为根节点的二叉排序树的最小节点
+
+
+    /**
+     * @param node 就是你传入的节点(当做二叉排序树的根节点)
+     * @return 返回的是以node为根节点的二叉排序树的最小根节点的值
+     */
+    public int delRightTreeMin(Node node) {
+        Node target = node;
+        //循环的查找左节点，就会找到最小值
+        while (target.left != null) {
+            target = target.left;
+        }
+        //这时target就指向了最小的节点
+        //删除最小的节点
+        delNode(target.value);
+        return target.value;
+    }
+
+    //删除节点
+    public void delNode(int value) {
+        if (root == null) {
+            return;
+        } else {
+            //1.需求先去找到要删除的节点 targetNode
+            Node targetNode = search(value);
+            if (targetNode == null) {
+                return;
+            }
+            //如果我们发现当前这颗二叉排序树只有一个节点
+            if (root.left == null && root.right == null) {
+                root = null;
+                return;
+            }
+            //去找到targetNode的父节点
+            Node parent = searchParent(value);
+            //如果要删除的节点是叶子节点
+            if (targetNode.left == null && targetNode.right == null) {
+                //判断targetNode是父节点的左子节点还是右子节点
+                if (parent.left != null && parent.left.value == value) {//是左子节点
+                    parent.left = null;
+                } else if (parent.right != null && parent.right.value == value) { //是右子节点
+                    parent.right = null;
+                }
+            } else if (targetNode.left != null && targetNode.right != null) {
+                //删除有两颗子树的情况
+                int minvalue = delRightTreeMin(targetNode.right);
+                targetNode.value = minvalue;
+
+            } else {
+                //删除只有一颗子树的节点
+                //如果要删除的节点有左子节点
+                if (targetNode.left != null) {
+                    if (parent != null) {
+                        //如果targetNode是parent的左子节电
+                        if (parent.left.value == value) {
+                            parent.left = targetNode.left;
+                        } else { //如果targetNode是parent的右子节电
+                            parent.right = targetNode.left;
+                        }
+                    } else {
+                        root = targetNode.left;
+                    }
+                } else {//要删除的节点有右子节点
+                    if (parent != null) {
+
+                        //targetNode是parent的左子节电
+                        if (parent.left.value == value) {
+                            parent.left = targetNode.right;
+                        } else {
+                            parent.right = targetNode.right;
+                        }
+                    } else {
+                        root = targetNode.right;
+                    }
+                }
+
+            }
+        }
+    }
+    //添加节点的方法
+    public  void add(Node node){
+        if (root==null){//如果root为空，直接让root指向node
+            root=node;
+        }else{
+            root.add(node);
+        }
+    }
+    //中序遍历的方法
+    public void infixOrder(){
+        if (root!=null){
+            root.infixOrder();
+        } else {
+            System.out.println("二叉排序树为空，不能遍历");
+        }
+    }
+}
+
+    class Node {
+        int value;
+        Node left;
+        Node right;
+
+        public Node(int value) {
+            this.value = value;
+        }
+
+        //返回左子树的高度
+        public int leftHeight() {
+            if (left == null) {
+                return 0;
+            }
+            return left.height();
+        }
+
+        //返回右子树的高度
+        public int rightHeight() {
+            if (right == null) {
+                return 0;
+            }
+            return right.height();
+        }
+
+        //返回当前节点的高度，以该节点为根节点的树的高度
+        public int height() {
+            return Math.max(left == null ? 0 : left.height(), right == null ? 0 : right.height()) + 1;
+        }
+   //左旋转的方法
+        private  void  leftRotate(){
+            //创建新的节点，以当前根节点的值
+            Node newNode = new Node(value);
+	    //把新的节点左子树设置成当前节点的左子树
+	    newNode.left=left;
+	    //把新的节点的右子树设置成当前节点的右子树的左子树
+	    newNode.right=right.left;
+	    //把当前节点设置成当前节点的右子树
+	    value=right.value;
+	    //把当前节点的右子树设置成右子树的右子树
+	    right=right.right;
+	    //把当前节点的左子树设置成新的新的节点
+	    left=newNode;   
+        }
+	//有旋转的方法
+	private void rightTotate(){
+	Node newNode=new Node(value);
+	newNode.right=right;
+	newNode.left=left.right;
+	value=left.value;
+	left=left.left;
+	right=newNode;
+	}
+
+        //查找要删除的节点
+
+        /**
+         * @param value 你希望删除的节点的值
+         * @return 如果找到返回该节点 ，否则返回null
+         */
+        public Node search(int value) {
+            if (value == this.value) {//找到的就是该节点
+                return this;
+            } else if (value < this.value) {//如果查找的值小于当前节点，就应该向左子树递归查找
+                //如果左子节点为空，就不能继续查找
+                if (this.left == null) {
+                    return null;
+                }
+                return this.left.search(value);
+            } else {//查找的值不小于当前结点
+                //判断右子树是否为空
+                if (this.right == null) {
+                    return null;
+                }
+                return this.right.search(value);
+            }
+        }
+        //查找要删除节点的父节点
+
+        /**
+         * @param value 要找的节点的值
+         * @return 返回的是要删除的节点的父节点，如果没有就返回null
+         */
+        public Node searchParent(int value) {
+            //如果当前节点就是要删除的的节点的父节点，就返回
+            if ((this.left != null && this.left.value == value) || (this.right != null && this.right.value == value)) {
+                return this;
+            } else {
+                //如果查找的值小于当前节点的这个值，并且当前节点的左子节点
+                if (value < this.value && this.left != null) {
+                    return this.left.searchParent(value);//向左子节点递归的查询父节点
+                } else if (value >= this.value && this.right != null) {
+                    return this.right.searchParent(value);//向右子树递归查找
+                } else {
+                    return null;//没有找到父节点
+                }
+            }
+        }
+
+        @Override
+        public String toString() {
+            return "Node [value=" + value + "]";
+        }
+
+        //添加节点的方法
+        //递归的形式，添加节点，注意需要满足二叉排序树的要求
+        public void add(Node node) {
+            if (node == null) {
+                return;
+            }
+            //判断传入的节点的值，和当前节点的根节点的值作比较
+            if (node.value < this.value) {
+                //如果当前节点的左子树为空
+                if (this.left == null) {
+                    this.left = node;
+                } else {
+                    //递归的向左子树进行添加
+                    this.left.add(node);
+                }
+            } else {//添加的节点的值大于当前节点的值
+                if (this.right == null) {
+                    this.right = node;
+                } else {
+                    //递归的向右子树进行添加
+                    this.right.add(node);
+                }
+            }
+	    //当添加一个节点时，要对当前节点的值进行判断：如果右子树的高度-左子树的高度>1,则要进行左旋转
+	    if((right.height-left.right)>1){
+	    if(right!=null &&right.leftHeight()>right.rightHeight()){
+	    right.rightHeight();
+	    leftRota();
+	    }else {
+	    leftRotate();
+	    }
+	    
+	    }
+	    //当添加完一个节点之后，如果左子树的高度-右子树的高度>1，则进行左旋转
+	    if(leftHeight()-rightHeight()>1){
+	    if(left!=null && left.rightHeight()>left.leftHeight()){
+	    left.leftRotate();
+	    rightTotate();
+	    }else {
+	    rightTotate();
+	    }
+	    
+	    }
+        }
+
+        //中序遍历
+        public void infixOrder() {
+            if (this.left != null) {
+                this.left.infixOrder();
+            }
+            System.out.println(this);
+            if (this.right != null) {
+                this.right.infixOrder();
+            }
+        }
+    }
+-------------------------------------------------------------------------------------------------------
+图的创建
+public class Graph{
+private ArrayList<String> vertexList;//用于存储顶点
+private int[][] edges; //表示路径
+private int numOfEdges；//表示边的个数
+private boolean[] isVisited;
+public static void main(String[] args){
+
+}
+public Graph(int n){//n表示顶点的个数
+vertexList=new ArrayList<String>();
+edges=new int[n][n];
+numOfEdges=0;
+isVisited=new boolean[5];
+}
+//得到第一个邻接结点的下标w
+public int getFistNeighbor(int index){
+for (int j=0;j<vertexList.size();j++){
+ if (edges[index][j]>0){
+ return j;
+ }
+}
+return -1;
+}
+//根据前一个邻接结点的下标来获取下一个邻接结点的下标
+public int getNextNeighbor(int v1,int v2){
+for (int j=v2+1;j<verterList.size();j++){
+ if (edges[v1][j]>0){
+ return j;
+ }
+}
+return -1;
+}
+//深度算法优先遍历的代码实现
+public void dfs(boolean[] isVisited,int i){
+//首先输出i
+System.ouy.println(getValueByIndex(i)+"->");
+isVisted[i]=true;
+int w=getNextNeighbor(i);
+while(w!=-1){
+if (!isVisted[w]){
+dfs(isVisted,w);
+}
+//如果w结点已经被访问过了
+w=getNextNeighbor(i,w);
+}
+ }
+ //对dfs方法进行重载，回溯算法，以便访问所有的结点
+ public void dfs(){
+ for (int i=0;i<getNumOfVertex;i++){
+ if (!isVisited[i]){
+  dfs(isVisited,i);
+ }
+ }
+ }
+ //对一个结点进行广度优先搜索的代码实现
+ private void bfs(boolean[] isVisited,int i){
+  int u;//队列的头元素
+  int w;//结点的相邻结点
+  LinkList queue=new LinkList();
+  //输出当前节点的值
+  System.out.print(getValueByIndex(i)+"->");
+  isVisited[i]=true;
+  //加入队列
+  queue.addList(i);
+  //对一个节点进行广度优先遍历
+  while(!queue.isEmpty()){
+  u=(Integer)queue.removeFirst;
+   w=getNextNeighbor(u);
+   while (w！=-1){
+   if(!isVisited[w]){
+    System.out.print(getValueByIndex(w)+"->");
+    isVisited[w]=true;
+    queue.addList(w);
+   }
+   //如果已经访问过了，则需要进行以当前节点为前驱节点，寻找w后面的节点
+   w=getNextNeighbor(u,w);
+   }
+   }
+ }
+ //对bfs方法进行重载，遍历所有的队列元素
+ public void bfs(){
+ for (int i=0;i<getNumOfVertex();i++){
+ if(!isVisited[i]){
+ dfs(isVisited,i);
+ }
+ }
+ }
+//图中一些常用的方法
+//返回节点的个数
+public int getNumOfVertex(){
+return vertexList.size();
+}
+//返回边的个数
+public int getNumOfEdge(){
+return numOfEdges;
+}
+//返回两个顶点的权值
+public int getWeight(int v1,int v2){
+return edges[v1][v2];
+}
+//返回对应下标的数据
+public String getValueByIndex(int i){
+return vertexList.get(i);
+}
+//显示图对应的矩阵
+public void showGraph(){
+for (int[] link:edges){
+System.out.println(Arrays.toString(link));
+}
+}
+public void insetVertex(String vertex){
+vertexList.add(vertex);
+}
+public void insertEdge(int v1,int v2,int weight){
+edges[v1][v2]=weight;
+edges[v2][v1]=weight;
+numOfEdgse++;
+}
+}
+

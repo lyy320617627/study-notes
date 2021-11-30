@@ -1,0 +1,737 @@
+1.二分算法的代码实现
+public class BinarySearchNoRecusion{
+public static void main(String[] args){
+  int[] arr ={1,2,3,6,4,8};
+  int index=binarySearch(arr,8);
+  System.out.println("index="+index);
+}
+//二分算法的代码
+public static int binarySearch(int[] arr,int target){
+ int left=0;
+ int right=arr.length-1;
+ int mid=(left+right)/2;
+ while(left<=right){
+  if (arr[mid]==target){
+  return mid;
+    
+   }else if(arr[mid]>target){
+   right=mid-1;
+  }else {
+   left=mid+1
+  }
+ }
+return -1;
+}
+}
+-------------------------------------------------------
+2.汉诺塔的代码实现
+public Hanoitower{
+public static void main(String[] args){
+
+}
+//汉诺塔的方法
+public static void hanoitower(int num,char a,char b,char c){
+ if (num==1){
+ System.out.println("第一个盘从"+a+"->"+c);
+ }else {
+ //1.把最上面的一个盘从A->b,移动过程中会借助B
+  hanoitower(num-1,a,c,b);
+  System.out.println("第"+num+"个盘从"+a+"->"+c);
+  //2.把最下面的盘从a到b，移动过程中会借助c
+  hanoitower(num-1,b,a,c);
+ }
+}
+}
+----------------------------------------------
+背包问题的代码实现
+public class KnapsackProblem{
+public static void main(String[] args){
+ int[] val={1500,3000,2000};/表示物品的价值
+ int[] w={1,4,3};//表示物品的重量
+ int m=4;//表示背包的容量
+ int n=val.length;
+ int[][] v=new int[n+1][m+1];
+ int[][] path=new int[n+1][m+1];
+ for(int i=0;i<v.lenght;i++){
+  v[i][0]=0;
+ }
+ for (int j=0;j<v[0].length;j++){
+  v[0][j]=0;
+ }
+ for (int i=1;i<v.length;i++){
+ for (int j=1;j<v[0].length;j++){
+ if (w[i-1]>j){//我们下标是从1开始的，所以w[i-1]开始
+   v[i][j]=v[i-1][j];
+ }else {
+  if (v[i-1][j]<val[i-1]+v[i-1][j-w[i-1]]){
+  v[i][j]=val[i-1]+v[i-1][j-w[i-1]];
+  path[i][j]=1;
+  }else {
+  v[i][j]=v[i-1][j];
+  }
+ }
+ }
+ }
+
+for (int i=0;i<v.length;i++){
+for (int j=0;j<v[i].lenght;j++){
+System.out.printf(v[i][j]+" ");
+}
+System.out.println();
+}
+int i=path.length-1;
+int j=path[0].length-1;
+while (i>0 && j>0){
+if(path[i][j]==1){
+System.out.printf("第%d个商品放入背包\n",i);
+j-=w[i-1];
+}
+i--;
+}
+}
+}
+------------------------------------------
+暴力匹配算法的代码实现
+public class ViolenceMatch{
+public static void main(String[] args){
+ String st1="123456712345678123456789";
+ String str2="123456789";
+
+}
+//暴力匹配算法
+public static int violenceMatch(String str1,String str2){
+  char[] s1=str1.toCharArray();
+  char[] s2=str2.toCharArray();
+  int s1Len=s1.length;
+  int s2Len=s2.length;
+  int i=0;//i索引指向s1
+  int j=0;//j索引指向s2
+  while(i<s1Len && j<s2Len){
+  if (s1[i]==s2[j]){
+  i++;
+  j++;
+  }else {
+  i=i-(j-1);
+  j=0;
+  }
+  }
+  if(j==s2Len){
+  return i-j;
+  }esle {
+   return -1;
+  }
+}
+}
+----------------------------------
+KMP算法的代码实现
+public class KMP{
+public static void main(String[] args){
+String str1="BBC ABCDAB ABCDABCDABDE";
+String str2="ABCDABD";
+int[] next=kmpNext("ABCDABD");
+int index=kmpSearch(str1,str2,next);
+System.out.println("index="+index);
+}
+//KMP搜索算法的实现
+public static int kmpSearch(String str1,String str2,int[] next){
+ for (int i=0,j=0;i<str1.length();i++){
+ while(j>0 &&str1.charAt(i)!=str2.charAt(j)){
+ j=next[j-1];
+ }
+ if(str1.charAt(i)==str2.charAt(j)){
+ j++;
+ }
+  if (j==str2.length()){
+ return j;
+ }
+ }
+ return -1;
+}
+//找到部分匹配值的方法
+public static int[] kmpNext(String dest){
+int[] next=new int[dest.size()];
+next[0]=0;
+while(j>0 && dest.charAt(i)!=dest.charAt(j)){
+ j=next[j-1];
+}
+for (int i=1,j=0;i<dest.length){
+ if(dest.charAt(i)==dest.charAt(j)){
+ j++;
+ }
+ next[i]=j;
+}
+return next;
+}
+--------------------------------------------
+贪心算法的代码实现
+public class GreedyAlgorithm{
+public static void main(String[] args){
+HashMap<String,hashSet<String>> broadcasts=new HashMap<>();//用于存放电台及其所覆盖的地区
+ HashSet<String>  hashSet1 = new HashSet<>();
+        hashSet1.add("北京");
+        hashSet1.add("上海");
+        hashSet1.add("天津");
+        HashSet<String>  hashSet2 = new HashSet<>();
+        hashSet2.add("广州");
+        hashSet2.add("北京");
+        hashSet2.add("深圳");
+        HashSet<String>  hashSet3 = new HashSet<>();
+        hashSet3.add("成都");
+        hashSet3.add("上海");
+        hashSet3.add("杭州");
+        HashSet<String>  hashSet4 = new HashSet<>();
+        hashSet4.add("天津");
+        hashSet4.add("上海");
+        HashSet<String>  hashSet5 = new HashSet<>();
+        hashSet5.add("杭州");
+        hashSet5.add("大连");
+	broadcasts.put("k1",hashSet1);
+	broadcasts.put("k2",hashSet2);
+	broadcasts.put("k3",hashSet3);
+	broadcasts.put("k4",hashSet4);
+	broadcasts.put("k5",hashSet5);
+	//定义一个Allareas，用来存放所有覆盖的全部地区的集合
+	HashSet<String> Allareas=new HashSet<>();
+	 allAreas.add("北京");
+        allAreas.add("上海");
+        allAreas.add("天津");
+        allAreas.add("广州");
+        allAreas.add("深圳");
+        allAreas.add("成都");
+        allAreas.add("杭州");
+        allAreas.add("大连");
+	//定义一个temSet，用来存放该站点和未覆盖站点的交集
+	ArrayList<String> selects=new ArrayList<>();
+	//定义一个maxKey，用来存放能覆盖未覆盖的最多节点
+	HashSet<String> tempSet = new HashSet<>();
+	String maxKey=null;
+	while(Allareas.size()!=0){
+	maxKey=null;
+	for (String key:broadcasts.keySet()){
+	tempSet.clear();
+	 HashSet<String> areas=broadcasts.get(key);
+	 tempSet.addAll(areas);
+	 tempSet.retainAll(Allareas);
+	 if (tempSet.size()>0 && (maxKey==null || tempSet.size()>broadcasts.get(maxKey).size))){
+	 maxKey=key;
+	 }
+	}
+	if(maxKey!=null){
+	selects.add(maxKey);
+	ALlareas.removeAll(broadcasts.get(maxKey));
+	}
+	}
+	System.ouy.println("选择的结果是"+selects);
+}
+}
+---------------------------------------------
+普利姆算法的代码实现
+public class PrimAlgorithm{
+public static void main(String[] args){
+char data[]=new char[]{'A','B','C','D','E','F','G'};
+int verxs=data.length;
+ MGraph mgraph=new Graph(verxs);
+ int[][] weight=new int[][]{
+  {10000,5,7,10000,10000,10000,2},
+                {5,10000,10000,9,10000,10000,3},
+                {7,10000,10000,10000,8,10000,10000},
+                {10000,9,10000,10000,10000,4,10000},
+                {10000,10000,8,10000,10000,5,4},
+                {10000,10000,10000,4,5,10000,6},
+                {2,3,10000,10000,4,6,10000}
+ };
+ MinTree minTree=new  MinTree();
+ minTree.createGraph(mgraph,verxs,data,weight);
+ //输出
+ minTree.showGraph(mgraph)
+ 
+}
+class Mintree{
+ //创建图的邻接矩阵
+ public void createGraph(Mgraph mgraph,int verxs,char[] data,int[][] weight){
+ int i,j;
+ for (i=0;i<verxs;i++){
+ mgraph.data[i]=data[i];
+ }
+ for (j=0;j<verxs;j++){
+ mgraph.weight[i][j]=weight[i][j];
+ }
+}
+public void showGraph(graph graph){
+ for (int[] link:graph.weight){
+ System.out.println(Arrays.toString(link));
+ }
+}
+public void  prim(Graph graph,int v){
+ int[] visited=new int[graph.verxs];
+ visited[v]=1;
+ int h1=-1;
+ int h2=-1;
+ for(int i=0;i<graph.verxs;i++){
+ visited[i]=0;
+ }
+ minWeight=10000;
+ for (int k=1;i<graph.verxs;k++){
+   for (int i=0;i<graph.verxs;i++){
+    for (int j=0;j<graph.verxs;j++){
+    if (visited[i]==1 && visited[j]==0 && graph.weight[i][j]<minWeight){
+     minWeight=graph.weight[i][j];
+     h1=i;
+     h2=j;
+    }
+    }
+   }
+   System.out.println("边<"+graph.data[h1]+","+graph.data[h2]+">权值"+minWeight)；
+   visited[h2]=1;
+   minWeight=10000;
+ }
+}
+}
+class Mgraph{
+ int verxs;
+ char[] data;
+ int[][] weight;
+ public Mgraph(int verxs){
+ this.verxs=verxs;
+ data =new char[verxs];
+ weight[][]=new int[verxs][verxs];
+ }
+}
+}
+--------------------------------------
+克鲁斯卡尔算法的代码实现
+public class KruskalCase{
+private int edgeNum;//表示边的数量
+private char[] vertexs;//创建顶点数组
+private int[][] martix; 创建邻接矩阵
+private static final int INF=Integer.MAX_VALUE;
+public static void main(String[] args){
+char[] vertexs={'A','B','C','D','E','F','G'};
+int[][] martix={
+ {0,12,INF,INF,INF,16,14},
+             {12,0,10,INF,INF,7,INF},
+             {INF,10,0,3,5,6,INF},
+             {INF,INF,3,0,4,INF,INF},
+             {INF,INF,5,4,0,2,8},
+             {16,7,6,INF,2,0,9},
+             {14,INF,INF,INF,8,9,0}
+};
+  KruskalCase kruskalcase=new KruskalCase(vertexs,martix);
+  kruskalcase.print();
+}
+public KruskalCase(char[] vertexs,int[][] martix){
+ //记录下传入的数组长度
+ int vlen=vertexs.length;
+ this.vertexs=new char[vlen];
+ int[][] martix=new int[vlen][vlen];
+ //初始化顶点数组
+ for (int i=0;i<vlen;i++){
+ this.vertexs[i]=vertexs[i];
+ }
+ for (int i=0;i<vlen;i++){
+ for (int j=0;j<vlen;j++){
+ this.martix[i][j]=martix[i][j];
+ }
+ }
+ //统计边的数目
+ for (int i=0;i<vlen;i++){
+ for (int j=0;j<vlen;j++){
+ if (martix[i][j]!=INF){
+    edgeNum++;
+ }
+ }
+ }
+ //对边进行排序
+ public void sortEdges(EData[] edgs){
+  for (int i=0;i<edgeslength;i++){
+  for (int j=0;j<edges.length-i-1;j++){
+  if (edges[j]>edges[j+1]){
+   EData tmp=edges[j];
+   edges[j]=edges[j+1];
+   edges[j+1]=tmp;
+  }
+  }
+  }
+ }
+ //返回顶点对应的值
+ private int getPosition(char ch){
+   for (int i=0;i<vertexs.length;i++){
+   if (vertexs[i]==ch){
+   return i;
+   }
+   }
+   return -1;
+ }
+ //获取图中的边，后面我们需要遍历该数组
+ private EData[]  getEdges(){
+ int index=0;
+ for (int i=0;i<vertexs.length;i++){
+ for (int j=i+1;j<vertexs.length;j++){
+ if (martix[i][j]!=INF{
+ edges[index++]=new EData(vertexs[i],vertexs[j],martix[i][j]);
+ }
+ }
+ }
+return edges;
+ }
+}
+public  void kruskal(){
+  int nidex=0;//表示最后结果数组的索引
+  int[] ends=new int[edgeNum];//用于保存“已有最小生成树”中的每个顶点在最小生成树中的终点
+  EData[] rets=new EData[edgeNim];//创建数组，用于保存最后的最小生成树
+   //获取图中所有的边的集合，一共有12边
+   EData[] edges=getEdges();
+   //按照边的权值大小，进行排序
+   sortEdges(edges);
+   for(int i=0;i<edgeNum;i++){
+   //获取第i条边的第一个顶点(起点)
+   int p1=getPosition(edges[i].start);
+   //获取第i条边的第二个顶点（终点）
+   int p2=getPosition(edges[i].end);
+   //获取pz这个顶点在已有的最小生成树的终点
+   int m=getEnd(ends,p1);
+   int n=getEnd(ends,p2);
+   if (m!=n){
+     ends[m]=n;//设置m在"已有最小生成树"中的终点
+     rets[index++]=edges[i];//有一条边加入到哦rets数组中
+}
+   }
+}
+//打印邻接矩阵
+public void print(){
+for (int i=0;i<vertexs.length;i++){
+for (int j=0;j<vertexs.length;j++){
+ System.out.printf("%10d\t",martix[i][j]);
+}
+System.out.println();
+}
+}
+//功能：获取下标为i的顶点的终点，用于后面判断两个终点是否相同
+//ends：数组就是记录各个顶点对应的终点是哪个，ends数组是在遍历过程中，逐步形成
+// i:表示传入的顶点就是对应的下标
+//返回的就是下标weii的这个顶点对应的终点的下标
+private int getEnd(int[] ends ,int i){
+while(ends[i]!=0){
+ends[i]=i;
+}
+return i;
+}
+}
+//创建一个类EData,便于后面的输出
+public EData{
+ char start;//表示边的一个点
+ char end;//表示边的另一个点
+ int weight;//表示两点的权值
+ public EData(char start,char end,int weight){
+ this.start=start;
+ this.end=end;
+ this.weight=weight;
+ }
+ @Override
+ public String toString(){
+  return "EData["start="+start+"end="+end+"weight="+weight+]";
+ }
+}
+//创建一个EData类,它的对象实例就表示一条边
+class EData{
+char start;//表示边的一个顶点
+char end;//表示边的另一个顶点
+int weight;//表示边的权值
+public EData(char start,char end,int weight){
+this.start=start;
+this.end=end;
+this.weight=weight;
+}
+@Override
+public String toString(){
+return "EData[ start="+start+"end="+end+"weight="+weight+"]";
+}
+}
+----------------------------------------------
+Dijkstral算法----迪杰斯特拉算法的代码实现
+public class Dijkstral{
+public static void main(String[] args){
+  char[] vertexs=new char[]{'A','B','C','D','E','F','G'};
+        //邻接矩阵
+        int[][] martix=new int[vertexs.length][vertexs.length];
+        final  int N=65535;;//表示不可连接
+        martix[0]=new int[]{N,5,7,N,N,N,2};
+        martix[1]=new int[]{5,N,N,9,N,N,3};
+        martix[2]=new int[]{7,N,N,N,8,N,N};
+        martix[3]=new int[]{N,9,N,N,N,4,N};
+        martix[4]=new int[]{N,N,8,N,N,5,4};
+        martix[5]=new int[]{N,N,N,4,5,N,6};
+        martix[6]=new int[]{2,3,N,N,4,6,N};
+        //创建Graph对象
+        Graph graph = new Graph(vertexs, martix);
+        //测试图的邻接矩阵是否正确
+        graph.showGraph();
+}
+}
+class Graph{
+private char[] vertexs;//顶点数组
+private int[][] martix;//邻接矩阵
+private VisitedVertexs vv;//表示已经访问过的顶点的集合
+public  Graph(char[] vertexs,int[][] martix){
+  this.vertexs=vertexs;
+  this.martix=martix;
+}
+//显示结果
+  public void showDijkstra(){
+        vv.show();
+    }
+//显示图
+public void showGarph(){
+ for(int[] link:martix){
+ System.out.println(Arrays.toString(link));
+ }
+}
+public void dsj(int index){
+vv=new VisitedVertexs(vertexs.length,index);
+  update(index);//更新index顶点到周围低昂蒂娜的距离和前驱结点
+  for (int j=1;j<vertexs.length;j++){
+  index=vv.updateArr();//选择并返回新的访问结点
+  update(index);
+  }
+}
+//
+private void update(int index){
+int len=0;
+for (int j=0;j<martix[index].length;j++){
+//len表示出发顶点到index顶点的距离+index顶点到j顶点的距离的和
+len=vv.getDis(j)+martix[index][j];
+//如果j顶点没有被访问过，并且len小于出发顶点到j顶点的距离的和
+if (!vv.in(j) && len<vv.getDis(j)){
+vv.update(j,index);
+vv.updateDis(index,len);
+}
+}
+}
+}
+class VisitedVertexs{
+private int[] already_arr;/记录每个顶点是否被访问过
+private int[] pre_visited;//记录每个顶点的前一个顶点的下标
+private int[] dis;//记录出发顶点到各个顶点的距离
+//length:表示顶点数组对应的长度，index表示出发顶点坐标
+public VisitedVertexs(int length,int index){
+  this.already_arr=new int[length];
+  this.pre_visited=new int[length];
+  this.dis=new int[length];
+  Arrays.fill(dis,65535);
+  this.already_arr[index]=1;//设置出发顶点被访问过
+this.dis[index]=0;//设置出发
+}
+//返回每个顶点是否被访问过
+public boolean in(int index){
+return pre_visited[index]==1
+}
+//更新出发点到顶点的距离
+public void updateDis(int index,int len){
+  dis[index]=len;
+}
+//更新访问结点的前驱节点
+public void updatePre(int pre,int index){
+ pre_visited[index]=pre;
+}
+//返回对应顶点的距离
+public int getDis(int index){
+ return dis[index];
+}
+public void updateArr(){
+int min=65535,index=0;
+for (int i=0;i<already_arr.length;i++){
+if (already_arr[i]==0 && dis[i]<min){
+min=dis[i];
+index=i;
+}
+}
+更新index顶点被访问过
+already_arr[index]=1;
+index=1;
+}
+   //显示最后的结果
+    //即将三个数组的结展示出来就可以了
+    public void show(){
+        System.out.println("===========================");
+        //输出already_arr
+        for (int i:already_arr){
+            System.out.println(i +" ");
+        }
+        //输出pre_visited
+        for (int i:pre_visited){
+            System.out.println(i+" ");
+        }
+        //输出dis
+        for(int i:dis){
+            System.out.println(i +" ");
+        }
+    }
+}
+--------------------------------------
+弗洛伊德算法的代码实现
+public class Floyd{
+public static void main(String[] args){
+      char[] vertexs={'A','B','C','D','E','F','G'};
+        //创建邻接矩阵
+        int[][] martix=new int[vertexs.length][vertexs.length];
+        final int N=65535;
+        martix[0]=new int[]{0,5,7,N,N,N,2};
+        martix[1]=new int[]{5,0,N,9,N,N,3};
+        martix[2]=new int[]{7,N,0,N,8,N,N};
+        martix[3]=new int[]{N,9,N,0,N,4,N};
+        martix[4]=new int[]{N,N,8,N,0,5,4};
+        martix[5]=new int[]{N,N,N,4,5,0,6};
+        martix[6]=new int[]{2,3,N,N,4,6,0};
+        //创建一个图对象
+        Graph graph = new Graph(martix.length, martix, vertexs);
+        graph.show();
+}
+
+}
+class Graph{
+private char[] vertexs;//表示顶点数组
+private int[][] dis;//表示各个出发顶点到各个顶点的最短距离
+private int[][] pre;//表示各个顶点的前驱节点的下标
+//图的构造器
+public Graph(int length,int[][] martix,char[] vertexs){
+ this.vertexs=vertexs;//初始化顶点
+ this.dis=martix;
+ this.pre=new int[length][length];
+ for (int i=0;i<length;i++){
+ Arrays.fill(pre[i],i);
+ }
+}
+//显示的方法
+public void show(){
+//为了方便，我们优化一下输出
+char[] vertexs={'A','B','C','D','E','F','G'};
+for (int k=0;k<dis.length;k++){
+//显示pre数组
+for(int i=0;i<dis.length;i++){
+System.out.print(vertexs[pre[k][i]]+" ");
+}
+System.out.println();
+//显示dis数组
+for(int j=0;j<dis.length;j++){
+System.out.print("(从"+vertexs[k]+"到"+vertexs[j]+"的最短板路径是"+dis[k][j]+")");
+}
+}
+}
+//弗洛伊德的代码实现
+public void floyd(){
+int len=0;
+for (int k=0;k<dis.length;k++){
+for (int i=0;i<dis.length;i++){
+for (int j=0;j<dis.length;j++){
+len=dis[i][k]+dis[k][j];
+if (len<dis[i][j]){//如果len小于dis[i][j]
+dis[i][j]=len;//更新一下距离
+pre[i][j]=pre[k][j];//更新一下前驱节点
+}
+}
+}
+}
+}
+}
+--------------------------------------------------------------------------
+马踏棋盘算法的代码实现
+public class HorseBoardChess{
+private static int X;//定义棋盘的列数
+private static int Y;//定义棋盘的行数
+private static boolean visited[];//定义一个数组，记录棋盘的各个位置是否被访问过
+private static boolean isFinished;//定义一个属性，判断棋盘是否完成
+public static void main(String[] args){
+//测试一下骑士周游算法
+ int X=8;棋盘的行
+ int Y=8;棋盘的列
+int row=1；//马儿初始位置的行
+int coulmn=1;//马儿初始位置的列
+int[][] chessboard=new int[X][Y;
+visited=new boolean[X*Y];//创建马儿未走过的表格
+long start=System.currrentmmillls()l;
+traversalChessBoard(chessboard,row-1,column-1,1);
+long end=System.currentmills();
+
+for (int[] rows:chessboard){
+for (int  column:rows){
+System,out.print(column+"\t");
+}
+System.out.println();
+}
+  
+}
+//完成骑士周游的算法
+public void traversalChessBoard(int[][] chessboard,int row,int column,int step){
+//将马儿所在的位置标记为第一步
+visited[row][column]=step;
+//将马儿所在的位置标记为已经访问过
+visited[column*X+column]=true;
+//取出当前位置可以走的下一步位置的集合
+ArrayList<Point> ps=next(column,row);
+sort(ps);
+//当可以走的棋盘不为空时
+while(!ps.isEmpty()){
+//取出下一步可以走的位置
+Point p=ps.remove(0);
+if(!visited[p.y*x+p.x]){
+traversalChessBoard(chessboard,p.x,p.y,step+1);
+}
+//判断马儿是否完成了遍历棋盘
+//当step<X*Y时，有两种情况
+//1.棋盘到当前位置，仍然没有走完
+//2.棋盘处于一个回溯的过程
+if(step<X*Y && !sifinished){
+chessboard[row][column]=0;
+visitedp[row*X+column]=false;
+}else {
+isfinished=true;
+}
+}
+   public static ArrayList<Point> next(Point curPoint){
+         //创建一个ArrayList
+        ArrayList<Point> ps = new ArrayList<>();
+        Point p1 = new Point();
+        if ((p1.x=curPoint.x-2)>=0 && (p1.y=curPoint.y-1)>=0){
+            ps.add(new Point(p1));
+        }
+        if ((p1.x=curPoint.x-1)>=0 && (p1.y=curPoint.y-2)>=0){
+            ps.add(new Point(p1));
+        }
+        if ((p1.x= curPoint.x+1)< X && (p1.y=curPoint.y-2)>=0){
+            ps.add(new Point(p1));
+        }
+        if ((p1.x=curPoint.x+2)<X &&(p1.y=curPoint.y-1)>=0){
+            ps.add(new Point(p1));
+        }
+        if ((p1.x=curPoint.x+2)<X &&(p1.y= curPoint.y+1)<Y){
+            ps.add(new Point(p1));
+        }
+        if ((p1.x=curPoint.x+1)<X && (p1.y= curPoint.y+2)<Y){
+            ps.add(new Point(p1));
+        }
+        if((p1.x=curPoint.x-2)>=0 && (p1.y= curPoint.y+1)<Y){
+            ps.add(new Point(p1));
+        }
+        if ((p1.x=curPoint.x-1)>=0&&(p1.y=curPoint.y+2)<Y){
+            ps.add(new Point(p1));
+        }
+        return ps;
+    }
+    //对当前位置的下一步可以走的位置的选项进行非递减排序
+    public void sort(ArrayList<Point> ps){
+     ps.sort(new Comparator<Point>(){
+     @Override
+        public int compare(int o1,int o2){
+	int count1=next(o1).size();
+	int count2=next(o2).size();
+	if (count1<count2){
+	return -1;
+	}else if (count1==count2){
+	return 0;
+	}else {
+	return 1;
+	}
+	}
+     })
+    }
+}
